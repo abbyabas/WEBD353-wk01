@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Static Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/stylesheet.css"> </head>
+
+<body>
+    <h1>Our Chat App</h1>
+    <ul id="messages"></ul>
+    <form action="">
+        <input id="m" autocomplete="off" />
+        <button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        var socket = io();
+        //Grab the content of of the input when the button is clicked
+        $('form').submit(function () {
+            // socket.emit takes the data and sends it to the server
+            // ther server will figure out what to do with that data
+            socket.emit('chat message', $('#m').val());
+            $('#m').val('');
+            return false;
+        });
+    </script>
+</body>
+
+</html>

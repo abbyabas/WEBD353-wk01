@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Static Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/stylesheet.css"> </head>
+
+<body>
+    <h1>Our Chat App</h1>
+
+    <ul id="messages"></ul>
+
+    <div id="spiceBG">
+        <!-- spice girl image -->
+        10000
+    </div>
+
+    <form action="">
+        <input id="m" autocomplete="off"/>
+        <button id="btn">update</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <script>
+
+    // console.log(Math.floor((Math.random()*10000)));
+        var socket = io();
+        $('form').submit(function () {
+            //socket.emit('chat message', $('#m').val());
+            socket.emit('button-clicked', 'hi');
+            $('#m').val('');
+            return false;
+        });
+
+        //Listen for the Message from the server
+        // socket.on('chat message', function (msg) {
+        //     $('#messages').append($('<li>').text(msg));
+        // });
+        socket.on('send-number', function (data) {
+            $('#spiceBG').html(data);
+        })
+    </script>
+
+</body>
+
+</html>
